@@ -53,7 +53,7 @@ resource "aws_security_group" "server" {
 
 resource "aws_instance" "server" {
   ami             = data.aws_ami.ubuntu.image_id
-  instance_type   = "t2.micro"
+  instance_type   = "t2.medium"
   key_name        = "terraform"
   security_groups = [aws_security_group.server.name]
   user_data       = <<EOF

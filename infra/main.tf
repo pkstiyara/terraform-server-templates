@@ -2,7 +2,7 @@
 # Security Group
 
 resource "aws_security_group" "server" {
-  name        = "jenkins"
+  name        = "server-sg"
   description = "Allow SSH and HTTP traffic"
 
   ingress {
@@ -53,7 +53,7 @@ resource "aws_security_group" "server" {
 
 resource "aws_instance" "server" {
   ami             = data.aws_ami.ubuntu.image_id
-  instance_type   = "t2.medium"
+  instance_type   = "t2.micro"
   key_name        = "terraform"
   security_groups = [aws_security_group.server.name]
   user_data       = <<EOF

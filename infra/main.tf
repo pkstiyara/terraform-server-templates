@@ -69,5 +69,11 @@ EOF
   }
 }
 
+resource "aws_eip" "server-eip" {
+  vpc = true
+  instance = aws_instance.server.id
+  
+}
+
 
 

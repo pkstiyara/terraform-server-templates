@@ -1,8 +1,8 @@
 
 # Security Group
 
-resource "aws_security_group" "server" {
-  name        = "server-sg"
+resource "aws_security_group" "sonar-server" {
+  name        = "sonar-server-sg"
   description = "Allow SSH and HTTP traffic"
 
   ingress {
@@ -51,7 +51,7 @@ resource "aws_security_group" "server" {
 
 # Instance 
 
-resource "aws_instance" "server" {
+resource "aws_instance" "sonar-server" {
   ami             = data.aws_ami.ubuntu.image_id
   instance_type   = "t2.micro"
   key_name        = "terraform"
@@ -65,8 +65,13 @@ sudo apt-get update
 EOF
 
   tags = {
-    "Name" = "Server"
+    "Name" = "Sonar-Server"
   }
+}
+
+resource "aws_eip" "sonar-eip" {
+  vpc = true
+  instance = aws_instance.sonar-server.id
 }
 
 

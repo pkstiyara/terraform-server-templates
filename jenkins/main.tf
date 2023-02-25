@@ -87,4 +87,3 @@ resource "aws_eip" "jenkins-eip" {
   vpc = true
   instance = aws_instance.jenkins.id
 }
-

@@ -55,7 +55,7 @@ resource "aws_instance" "sonar-server" {
   ami             = data.aws_ami.ubuntu.image_id
   instance_type   = "t2.micro"
   key_name        = "terraform"
-  security_groups = [aws_security_group.server.name]
+  security_groups = [aws_security_group.sonar-server.name]
   user_data       = <<EOF
 #!/bin/bash
 

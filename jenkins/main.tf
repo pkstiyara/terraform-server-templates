@@ -44,7 +44,7 @@ resource "aws_security_group" "jenkins" {
 
 resource "aws_instance" "jenkins" {
   ami             = data.aws_ami.ubuntu.image_id
-  instance_type   = "t2.medium"
+  instance_type   = "t2.micro"
   key_name        = "jenkins-server-key"
   security_groups = [aws_security_group.jenkins.name]
   user_data       = <<EOF
@@ -87,3 +87,4 @@ resource "aws_eip" "jenkins-eip" {
   vpc = true
   instance = aws_instance.jenkins.id
 }
+
